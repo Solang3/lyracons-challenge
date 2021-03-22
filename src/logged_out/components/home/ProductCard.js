@@ -13,10 +13,10 @@ const styles = theme => ({
     textTransform: "uppercase",
     paddingLeft: theme.spacing(.75),
     paddingTop: theme.spacing(.5),
-    maxWidth: "130px"
+    maxWidth: "130px",
+    marginBottom: "26px"
   },
-  productListPrice: {
-    marginTop: theme.spacing(3),
+  productPrice: {
     paddingLeft: theme.spacing(.75),
     paddingTop: theme.spacing(.5),
     fontSize: "15px"
@@ -51,32 +51,49 @@ const styles = theme => ({
     fontWeight: "700",
     paddingLeft:  theme.spacing(.75),
     paddingTop: theme.spacing(.75)
+  },
+  productListPriceStriked: {
+    textDecoration: "line-through",
+    paddingLeft:  theme.spacing(.75),
+    paddingTop: theme.spacing(.75),
+    fontSize: "11px",
+    color: "#b5b5b5",
+    marginTop: "-28px",
   }
 });
 
 function ProductCard(props) {
-  const { classes, name, listPrice, badge, imageSrc } = props;
+  const { classes, name, listPrice, bestPrice, badge, imageSrc, oferta} = props;
+
+  if (badge !=="") {
+    var span
+    span = <Typography variant="h5" className={classes.productBadge}>{badge}</Typography>
+  }
+  if (bestPrice !=="") {
+    var price
+    price = <div>
+              <Typography variant="h5" className={classes.productListPriceStriked}>{listPrice}</Typography>
+              <Typography variant="h5" className={classes.productPrice}>{bestPrice}</Typography>
+            </div>
+            
+  } else {
+    price = <Typography variant="h5" className={classes.productPrice}>{listPrice}</Typography>
+  }
+  if (oferta !=="") {
+    var cuotas
+    cuotas = <Typography className={classes.productCuotas}>Hasta {oferta} cuotas</Typography>
+  }
   return (
     <Fragment>
       <div>
-        <Typography className={classes.productBadge}>
-          {badge}
-        </Typography>
+        {span}
         <img src={imageSrc} alt={name} className={classes.productImg}  />
       </div>
       <Typography variant="h5" className={classes.productName}>
         {name}
       </Typography>
-      <Typography variant="h5" className={classes.productListPrice}>
-        {listPrice}
-      </Typography>
-      {/*<Typography variant="h5" className={classes.productListPrice}>
-        {bestPrice}
-  </Typography>*/}
-      
-      <Typography className={classes.productCuotas}>
-        Hasta 12 cuotas
-      </Typography>
+      {price}
+      {cuotas}
     </Fragment>
   );
 }
@@ -86,7 +103,8 @@ ProductCard.propTypes = {
   name: PropTypes.string.isRequired,
   listPrice: PropTypes.string.isRequired,
   badge: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired
+  imageSrc: PropTypes.string.isRequired,
+  oferta: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(ProductCard);

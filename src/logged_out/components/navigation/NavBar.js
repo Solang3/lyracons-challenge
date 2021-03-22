@@ -19,10 +19,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.white,
     borderBottom: "1px solid #ccc"
   },
-  toolbar: {
-    minHeight: "75px",
-    padding: "0"
-  },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.h6.fontWeight
@@ -33,11 +29,21 @@ const styles = theme => ({
   noDecoration: {
     textDecoration: "none !important"
   },
-  headerContainer: {
+  toolbar: {
+    minHeight: "75px",
+    padding: "0",
     display: "flex",
-    flex: "1 1 100%",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.up("xs")]: {
+      flex: "1 1 100%"
+    },
+    [theme.breakpoints.up("sm")]: {
+      flex: "1 1 100%"
+    },
+    [theme.breakpoints.up("md")]: {
+      flex: "auto",
+    },
   },
   navIcons: {
     display: "flex",
@@ -83,7 +89,6 @@ function NavBar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div className={classes.headerContainer}>
             <Hidden mdUp>
               <div className={classes.navIcons}>
                 <IconButton
@@ -107,11 +112,9 @@ function NavBar(props) {
                 <img src={`${process.env.PUBLIC_URL}/images/icon-cart.svg`} alt="Cart icon" />
               </div>
             </Hidden>
-          </div>
-          <div>
+          
             <Hidden smDown>
               <img src={`${process.env.PUBLIC_URL}/images/logo.svg`} className={classes.brandLogo} alt="Lyracons Logo" />
-              <img src={`${process.env.PUBLIC_URL}/images/icon-cart.svg`} alt="Cart icon" />
               {menuItems.map(element => {
                 if (element.link) {
                   return (
@@ -143,8 +146,10 @@ function NavBar(props) {
                   </Button>
                 );
               })}
+              
+              <img src={`${process.env.PUBLIC_URL}/images/icon-cart.svg`} alt="Cart icon" />
             </Hidden>
-          </div>
+
         </Toolbar>
       </AppBar>
       <NavigationDrawer

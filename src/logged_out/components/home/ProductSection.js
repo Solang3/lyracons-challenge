@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, withWidth } from "@material-ui/core";
+import { Grid, Typography, withWidth, Hidden } from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import calculateSpacing from "./calculateSpacing";
 import ProductCard from "./ProductCard";
@@ -19,26 +19,59 @@ function ProductSection(props) {
         </Typography>
 
         <div>
-          <Grid container spacing={calculateSpacing(width)}>
-            {productsData.map(element => (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                lg={4}
-                data-aos="zoom-in-up"
-                key={element.id}
-              >
-                <ProductCard
-                  imageSrc={element.imageSrc}
-                  name={element.name}
-                  listPrice={element.listPrice}
-                  bestPrice={element.bestPrice}
-                  badge={element.badge}
-                />
+          <Hidden mdDown>
+            <Grid container spacing={1}>
+              <Grid container item md={3} spacing={3}>
+                Filtros
               </Grid>
-            ))}
-          </Grid>
+              <Grid container item md={9} spacing={3}>
+                <Grid container spacing={calculateSpacing(width)}>
+                  {productsData.map(element => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      lg={4}
+                      data-aos="zoom-in-up"
+                      key={element.id}
+                    >
+                      <ProductCard
+                        imageSrc={element.imageSrc}
+                        name={element.name}
+                        listPrice={element.listPrice}
+                        bestPrice={element.bestPrice}
+                        badge={element.badge}
+                        oferta={element.oferta}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Hidden>
+          <Hidden lgUp>
+            <Grid container spacing={calculateSpacing(width)}>
+              {productsData.map(element => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  lg={4}
+                  data-aos="zoom-in-up"
+                  key={element.id}
+                >
+                  <ProductCard
+                    imageSrc={element.imageSrc}
+                    name={element.name}
+                    listPrice={element.listPrice}
+                    bestPrice={element.bestPrice}
+                    badge={element.badge}
+                    oferta={element.oferta}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Hidden>
         </div>
       </div>
     </div>

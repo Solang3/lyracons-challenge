@@ -6,7 +6,8 @@ const productsData = [
         listPrice: "2999.00",
         bestPrice: "",
         fees: "12",
-        badge: "-50%OFF"
+        badge: "-50%OFF",
+        oferta: ""
     },
     {
         id: "10002",
@@ -15,7 +16,8 @@ const productsData = [
         listPrice: "3299.00",
         bestPrice: "2299.00",
         fees: "12",
-        badge: "NUEVO"
+        badge: "NUEVO",
+        oferta: "3"
     },
     {
         id: "10003",
@@ -24,7 +26,8 @@ const productsData = [
         listPrice: "2999.00",
         bestPrice: "",
         fees: "12",
-        badge: ""
+        badge: "",
+        oferta: ""
     },
     {
         id: "10004",
@@ -33,7 +36,8 @@ const productsData = [
         listPrice: "3299.00",
         bestPrice: "2299.00",
         fees: "12",
-        badge: ""
+        badge: "",
+        oferta: "6"
     },
     {
         id: "10005",
@@ -42,7 +46,8 @@ const productsData = [
         listPrice: "2999.00",
         bestPrice: "1999.00",
         fees: "12",
-        badge: ""
+        badge: "",
+        oferta: ""
     },
     {
         id: "10006",
@@ -51,7 +56,8 @@ const productsData = [
         listPrice: "2999.00",
         bestPrice: "",
         fees: "12",
-        badge: ""
+        badge: "",
+        oferta: "12"
     }
   ];
 
